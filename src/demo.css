@@ -1,0 +1,726 @@
+/*
+
+	demo.css
+
+*/
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Webfont */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+/*
+
+	Zilla Slab Light Font - SIL License
+
+	@> https://github.com/mozilla/zilla-slab
+
+*/
+
+@font-face {
+	font-family: 'zillaslab-light';
+	src: url('../fnt/zillaslab-light.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/*
+
+	Zilla Slab Semi Bold - SIL License
+
+	@> https://github.com/mozilla/zilla-slab
+
+*/
+
+@font-face {
+	font-family: 'zillaslab-semibold';
+	src: url('../fnt/zillaslab-semibold.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Document */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+html {
+	font-size: 16px;
+	font-family: sans-serif;
+}
+
+body {
+	color: rgb(24,24,24);
+	background-color: rgb(240,240,242);
+}
+
+div,
+span {}
+
+hr {
+	margin: 0;
+	border: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	margin: 1em 0 .5em;
+	font-style: normal;
+	font-weight: normal;
+	font-family: zillaslab-semibold;
+}
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.5rem; }
+
+em,
+strong {
+	font-size: 106.25%;
+}
+
+em {
+	font-style: normal;
+	font-family: zillaslab-light;
+}
+
+strong {
+	font-weight: normal;
+	font-family: zillaslab-semibold;
+}
+
+ul {
+	margin-bottom: 1.5rem;
+	padding-left: 1.5rem;
+	list-style-position: inside;
+}
+
+li {
+	margin: .625rem 0;
+}
+
+p,
+pre {
+	margin: .75rem 0 .75rem;
+}
+
+p {
+	text-align: justify;
+}
+
+p.al {
+	text-indent: 1.125rem;
+}
+
+p.pre {
+	white-space: pre;
+}
+
+.dark p {
+	color: rgb(208,208,208);
+}
+
+pre {
+	display: inline-block;
+	padding: .75rem;
+	font-size: .75rem;
+	font-style: normal;
+	font-weight: normal;
+	font-family: Consolas, monospace;
+	color: rgb(48,48,48);
+	background-color: rgba(48,48,48,.0625);
+	border-left: 6px solid lightgrey;
+}
+
+.dark pre {
+	background-color: rgba(240,240,240,.0625);
+	border-left-color: dimgrey;
+}
+
+code {
+	display: inline-block;
+	padding: .25rem .5rem;
+	font-size: 1.125rem;
+	font-style: normal;
+	font-family: zillaslab-light;
+	background-color: rgba(255,192,0,.25);
+	background-color: rgb(48,48,48);
+	color: white;
+}
+
+var {
+	font-style: normal;
+}
+
+/* Operator */
+var.o { color: mediumvioletred; font-weight: bold; padding: 0 .125rem;}
+/* Marks */
+var.m { color: rebeccapurple; font-weight: bold; padding: 0 .0625rem;}
+/* Integers */
+var.i {color: tomato;}
+/* String */
+var.s { color: rebeccapurple; }
+/* Comment */
+var.q { color: teal; }
+/* Tag */
+var.t { color: darkmagenta; font-weight: bold; }
+/* Attribute */
+var.a { color: mediumorchid; }
+/* Keyword */
+var.k { color: brown; font-weight: bold; }
+/* Reserved */
+var.r { color: darkslateblue; font-weight: bold; }
+/* Custom */
+var.c {}
+
+/* Operator */
+.dark var.o { color: yellow; }
+/* Marks */
+.dark var.m { color: yellowgreen; }
+/* Integers */
+.dark var.i {color: tomato;}
+/* String */
+.dark var.s { color: darkkhaki; }
+/* Comment */
+.dark var.q { color: mediumseagreen; }
+/* Tag */
+.dark var.t { color: gold; }
+/* Attribute */
+.dark var.a { color: orange; }
+/* Keyword */
+.dark var.k { color: tan; }
+/* Reserved */
+.dark var.r { color: sandybrown; }
+/* Custom */
+.dark var.c {}
+
+button {
+	margin: 0;
+	padding: 0;
+}
+
+button:focus {
+	outline: 0;
+}
+
+button:not([disabled]):active {
+	padding-top: 2px;
+}
+
+button[disabled] {
+	padding-bottom: 2px;
+}
+
+button::-moz-focus-inner {
+	border: 0;
+}
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Elements */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+header,
+main,
+footer {
+	position: absolute;
+	min-width: 100%;
+	width: 1800px;
+	left: 0;
+}
+
+header,
+footer {
+	height: 100px;
+}
+
+header {
+	top: 0;
+	background-color: rgb(252,252,254);
+}
+
+main {
+	top: 100px;
+}
+
+footer {
+	pointer-events: none;
+	position: fixed;
+	bottom: 0;
+	background: linear-gradient(to top, rgb(248,248,250) 0%, rgb(248,248,250) 12.5%, transparent 100%);
+	z-index: 1;
+}
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Menu */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+#menu {
+	display: table;
+	min-width: inherit;
+	width: inherit;
+	height: inherit;
+	margin: 0;
+	padding: 0;
+	font-size: 0;
+}
+
+#menu button {
+	cursor: default;
+	position: relative;
+	display: table-cell;
+	width: 16.666666666666666666666666666667%;
+	height: inherit;
+	text-align: center;
+	vertical-align: middle;
+	color: rgb(48,48,48);
+	border-width: 0 1px 1px 1px;
+	border-style: solid;
+	border-color: transparent;
+	box-sizing: border-box;
+	background-color: transparent;
+}
+
+#menu button:hover {
+	background-color: rgb(248,248,250);
+}
+
+#menu button:before {
+	content: '';
+	display: inline-block;
+	position: absolute;
+	left: 25%;
+	bottom: 0;
+	width: 50%;
+	height: 0;
+	background-color: gainsboro;
+	transition: left .125s ease-out, bottom .125s ease-out, width .125s ease-out, height .125s ease-out;
+}
+
+#menu button:not([disabled]):focus:before,
+#menu button:not([disabled]):hover:before {
+	left: 0;
+	bottom: -4px;
+	width: 100%;
+	height: 4px;
+	margin-left: -1px;
+	padding: 0 1px;
+}
+
+#menu button:not([disabled]):hover:before {
+	background-color: rgba(24,160,248,.625);
+}
+
+#menu button:not([disabled]):focus:before {
+	background-color: rgba(248,160,24,.625);
+}
+
+#menu .icon svg {
+	fill: rgb(48,48,48);
+}
+
+#menu .icon span {
+	font-size: 1.125rem;
+	font-family: zillaslab-light;
+}
+
+#menu button[disabled] {
+	color: rgba(48,48,48,.375);
+	background-color: rgb(240,240,242);
+	border-bottom-color: transparent;
+}
+
+#menu button[disabled] svg {
+	fill: rgba(48,48,48,.25);
+}
+
+#menu button svg {
+	animation-iteration-count: 1;
+	animation-play-state: paused;
+}
+
+#menu button[data-show='start'] svg { /* rocket */
+	animation-duration: .75s;
+	animation-timing-function: ease-in;
+}
+
+#menu button[data-show='options'] svg { /* gear */
+	animation-duration: .25s;
+	animation-timing-function: ease-out;
+}
+
+@keyframes fire_rocket1 {
+	0%   {}
+	15%  {top: 0; transform: rotate(-45deg);}
+	25%  {top: -120px; transform: rotate(-45deg); opacity: 1;}
+	26%  {top: 0; transform: rotate(0deg); opacity: 0;}
+	85%  {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+@keyframes fire_rocket2 {
+	0%   {}
+	15%  {top: 0; transform: rotate(-45deg);}
+	25%  {top: -120px; transform: rotate(-45deg); opacity: 1;}
+	26%  {top: 0; transform: rotate(0deg); opacity: 0;}
+	75%  {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+@keyframes turn_gear1 {
+	0%   {transform: rotate(0deg);}
+	100% {transform: rotate(90deg);}
+}
+
+@keyframes turn_gear2 {
+	0%   {transform: rotate(0deg);}
+	100% {transform: rotate(90deg);}
+}
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Icons */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+.icon {
+	display: inline-block;
+	font-size: 0;
+}
+
+.icon svg,
+.icon span,
+.icon small {
+	display: inline-block;
+	position: relative;
+}
+
+.icon svg {
+	top: 0;
+	left: 0;
+	width: 60px;
+	height: 60px;
+	fill: rgba(48,48,48,.25);
+}
+
+.icon span {
+	top: -24px;
+	margin-left: 12px;
+	font-size: 1rem;
+}
+
+.icon small {
+	top: -36px;
+	margin-left: 6px;
+	font-size: .75rem;
+}
+
+.icon a span {
+	text-decoration: underline;
+}
+
+.icon.outline svg {
+	border-radius: 4px;
+	background-color: mediumseagreen;
+	fill: white;
+	padding: 4px;
+}
+
+.icon.outline span {
+	top: -28px;
+}
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Panes */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+.pane {}
+
+.pane .content {
+	position: absolute;
+	top: 100px;
+	left: 100px;
+	width: 1600px;
+	min-height: 750px;
+}
+
+#start { height: 1350px; }
+#position { height: 1350px; }
+#editable { height: 750px; }
+#themes { height: 1350px; }
+#options { height: 750px; }
+#snippets { height: 750px; }
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Tables */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+table {
+	width: 100%;
+	left: 100px;
+	top: 100px;
+	margin-bottom: 1.75rem;
+	border-spacing: .125rem;
+}
+
+th,
+td {
+	text-align: center;
+}
+
+th {
+	padding: .5rem;
+	font-size: 1.125rem;
+	font-family: zillaslab-light;
+	color: white;
+	background-color: rgb(48,48,48);
+}
+
+td {
+	padding: .25rem;
+}
+
+th:first-child,
+td:first-child,
+th:last-child,
+td:last-child {
+	text-align: left;
+}
+
+tbody tr {
+	background-color: rgba(48,48,48,.0625);
+}
+
+tbody tr:hover {
+	background-color: rgba(48,48,48,.125);
+}
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Flags */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+.flag {
+	padding: .125rem .25rem;
+	color: white;
+	vertical-align: top;
+	border-radius: .125rem;
+	background-color: rgb(48,48,48);
+}
+
+.flag.careful {
+	background-color: grey;
+}
+
+.flag.warning {
+	background-color: orangered;
+}
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Box Grid */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+/*
+	L1 = 100  + 250 + 100 = 450
+	L2 = 400  + 250 + 100 = 750
+	L3 = 700  + 250 + 100 = 1050
+	L4 = 1000 + 250 + 100 = 1350
+*/
+
+[class*='box'] {
+	position: absolute;
+}
+
+/* Line 1 */
+.box1,
+.box2,
+.box3,
+.box4 {
+	top: 100px;
+}
+
+/* Line 2 */
+.box5,
+.box6,
+.box7,
+.box8 {
+	top: 400px;
+}
+
+/* Line 3 */
+.box9,
+.box10,
+.box11,
+.box12 {
+	top: 700px;
+}
+
+/* Line 4 */
+.box13,
+.box14,
+.box15,
+.box16 {
+	top: 1000px;
+}
+
+/* Col 1 */
+.box1,
+.box5,
+.box9,
+.box13 {
+	left: 100px;
+}
+
+/* Col 2 */
+.box2,
+.box6,
+.box10,
+.box14 {
+	left: 500px;
+}
+
+/* Col 3 */
+.box3,
+.box7,
+.box11,
+.box15 {
+	left: 900px;
+}
+
+/* Col 4 */
+.box4,
+.box8,
+.box12,
+.box16 {
+	left: 1300px;
+}
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Rows + Cols */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+.row {
+	margin: 0 auto;
+	height: 480px;
+}
+
+.col {
+	float: left;
+	display: inline-block;
+	height: inherit;
+	padding: 1%;
+	box-sizing: border-box;
+}
+
+.col:nth-child(1) { width: 20%; background-color: rgba(255,0,0,.25); }
+.col:nth-child(2) { width: 40%; background-color: rgba(0,255,0,.25); }
+.col:nth-child(3) { width: 40%; background-color: rgba(0,0,255,.25); }
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Wrappers */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+.wrapper {
+	padding: 20px;
+	border: 10px solid rgba(0,0,0,.875);
+	background-color: rgba(0,0,0,.5);
+}
+
+/* ========================================================================== */
+/* -------------------------------------------------------------------------- */
+/* # Containers */
+/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+
+.container {
+	display: inline-block;
+	/* min-height: 100px; */
+	/* min-width: 200px; */
+	width: 250px;
+	height: 180px;
+	max-width: 350px;
+	max-height: 250px;
+	padding: 10px;
+	border: 1px solid rgb(192,192,192);
+	border-radius: 4px;
+	background-color: rgb(252,252,252);
+	box-shadow: 1px 1px 3px rgba(0,0,0,.125);
+	overflow-x: scroll;
+	overflow-y: scroll;
+	resize: both;
+	/* box-sizing: border-box; */
+	/* box-sizing: content-box; */
+}
+
+.container.static {
+	position: static;
+	display: block;
+	min-height: 0;
+	min-width: 0;
+	width: auto;
+	height: 280px;
+	max-width: none;
+	max-height: none;
+	margin: 20px;
+	padding: 10px;
+	resize: none;
+}
+
+.container.dark {
+	border-color: rgb(56,56,56);
+	background-color: rgb(72,72,72);
+}
+
+.container:focus {
+	outline: 4px solid rgba(24,160,248,.625);
+	border-radius: 0;
+}
+
+textarea.container:focus,
+[contenteditable='true']:focus {
+	border-color: orange !important;
+	outline-color: rgba(248,224,24,.75);
+}
+
+.container[data-scrollable-horizontal='true']:not([data-scrollbar*='top-side']),
+.container[data-scrollable-horizontal='true']:not([data-scrollbar*='top_side']) {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.container[data-scrollable-vertical='true']:not([data-scrollbar*='left-side']),
+.container[data-scrollable-vertical='true']:not([data-scrollbar*='left_side']) {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.container[data-scrollable-horizontal='true'][data-scrollbar*='top-side'],
+.container[data-scrollable-horizontal='true'][data-scrollbar*='top_side'] {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.container[data-scrollable-vertical='true'][data-scrollbar*='left-side'],
+.container[data-scrollable-vertical='true'][data-scrollbar*='left_side'] {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+

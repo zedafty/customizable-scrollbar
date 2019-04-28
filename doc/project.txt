@@ -1,0 +1,423 @@
+================================================================================
+--------------------------------------------------------------------------------
+# Customizable Scrollbar
+--------------------------------------------------------------------------------
+================================================================================
+
+  # Description
+    Customizable HTML scrollbars using CSS and JavaScript. | Barres de défilement HTML personnalisables via CSS et JavaScript.
+
+  # Tags
+    ui-components scrollbar html css javascript
+
+  # Technologies
+    HTML, CSS, JavaScript
+
+  # Features
+    cf. infra
+
+  # Required implementations
+  ° Import/Export Javascript => UMD (Thx Mathieu!)
+
+  # Optional implementations
+  * Plugin jQuery
+
+================================================================================
+--------------------------------------------------------------------------------
+# History
+--------------------------------------------------------------------------------
+================================================================================
+
+  Started on 2018 December, 19th
+  Achieved on 2019 January, 6th
+  Online on 2019 January, 10th
+  Fixing on 2019 January, 11th
+* Webpacking out of 2019 January, 14th (Mathieu)
+  Revert to initial on 2019 April, 28th
+
+================================================================================
+--------------------------------------------------------------------------------
+# Notes Prefixes
+--------------------------------------------------------------------------------
+================================================================================
+
+  ! Pending
+  ? Possible Todo
+  ~ Partially Done
+  ° Completely Done
+  * Given Up
+  > Item
+
+================================================================================
+--------------------------------------------------------------------------------
+# Comments Syntax
+--------------------------------------------------------------------------------
+================================================================================
+
+  // =============
+  // -------------
+  // # Topic
+  // -------------
+  // =============
+
+
+  ////////////////
+  // * Section
+  ////////////////
+
+
+  // -------------
+  // * Block
+  // -------------
+
+
+  // *            before instruction block comment (i.e. look line after // * to see what the comment is referring to)
+  //              after instruction line comment (i.e. look code before // to see what the comment is referring to)
+
+
+  // @>           URL (an external link to something licensed or especially usefull)
+  // |>           console instruction (something to be put in the browser's console and the expected ouput)
+
+
+  // TODO         something to be done later
+  // TEMP         something placed up temporarily ; to check up before stagging
+  // OLD          something no more used
+  // NEW          something just added
+  // BUG          something doesn't work like its supposed to
+  // DEBUG        something used only on dev and test stages ; exclude from prod
+  // REMOVED      something that doesn't exist anymore
+  // WARNING      something that could cause issues in the future ; tricky stuff
+  // USELESS      something that don't seem to serve any purpose ; left for notice
+  // DEPRECATED   something that used to work and be good but removed due to evolution
+
+================================================================================
+--------------------------------------------------------------------------------
+# What's done
+--------------------------------------------------------------------------------
+================================================================================
+
+  1 - Attach CSS customizable scrollbars to any HTML container
+  2 - Display scrollbars at different positions and places
+      Left, right, top, bottom AND inside or outside, expanding container or not
+  3 - Hide scrollbars when container has no scrollable content
+  4 - Control scrollbars buttons and track visibility
+  5 - Based scrollbar behaviour upon <Windows style>
+      Like <Windows style>, the scrollbar isn't focusable ; instead, the container is focusable and keystrokes affect the according scrollbar until another element is clicked
+      Like <Windows style>, the horizontal scrollbar can be moved using mouse wheel when shift key is held (additionally, the direction can be reversed for both directions) [reverse_wheel]
+      Like <Windows style>, selecting a text while maintening the cursor out of the container bounds will result in an automatic scrolling [select_scroll]
+      Like <Windows style>, the scrollbar gets back to its original position when the thumb is held and the cursor goes over a certain limit [reset_at_limits]
+      Unlike <Windows style>, the scrollbar sticks to the edges when the track is clicked (throught as an improvement) [snap_at_bounds]
+      Unlike <Windows style>, the scrollbar do not move when the track is clicked and mouse button held out of track area (thought as an improvement)
+      Unlike <Windows style>, the scrollbar can move either <up or down/left or right> when the track is clicked and mouse button held (thought as an improvement)
+
+================================================================================
+--------------------------------------------------------------------------------
+# What's NOT done
+--------------------------------------------------------------------------------
+================================================================================
+
+  1 - Selection scroll by keyboard => hard to code feature ; skipped by convenience
+      Since it's very tricky to get proper selection coordinates over an element (usage of out of window dummy),
+      this feature is left over and selection by keys do not interfere with scrolling.
+  2 - Middle mouse button scroll compass => hard coded feature ; skipped by lack of possibility
+      While it is possible to prevent default action when middle mouse button is pressed and fake scrolling,
+      it is not possible to control the cursor and give it the appropriate directions (no way to handle that).
+      Possible issue relative to that missing, is when the script scrollbars are used to replace document default scrollbars.
+      In that case, operating system action will simply be broken (so it is no recommanded to use the script that way).
+  3 - Browser smooth scroll ability => hard to code feature ; implemented as experimental
+  4 - Nested scrollbars => script not thought that way ; possible enhancement
+
+================================================================================
+--------------------------------------------------------------------------------
+# Todo
+--------------------------------------------------------------------------------
+================================================================================
+
+  ...
+
+================================================================================
+--------------------------------------------------------------------------------
+# Test
+--------------------------------------------------------------------------------
+================================================================================
+
+  ° focus inner element + keystrokes => OK (breaks scrolling ability ; expected behavior)
+  ° textarea                         => OK (almost)
+  ° contenteditable                  => OK (almost)
+  ° resize                           => OK (almost)
+  ~ static                           => OK (nearly ; if content is changed around, then layout is broken)
+  ~ children                         => OK (nearly ; works until any positioned child is reached in container)
+  ~ window                           => OK (nearly ; requires a compatible layout)
+  * nested scollbars                 => FAIL
+  ! iframe                           => ????
+
+================================================================================
+--------------------------------------------------------------------------------
+# Bugs
+--------------------------------------------------------------------------------
+================================================================================
+
+  # Issues
+  ° (#1) Keyboard events skipped when child element focused => FIXED -- used bubbling events (i.e. focusin and focusout)
+  ° (#2) Tab navigation broken on container's children => FIXED -- same as #1
+  ° (#3) Mouse wheel scroll both container and document => FIXED -- used event.prevenDefault() instead of window.scroll eraser
+
+  # Container
+  ° container loses focus when scrollbar clicked => FIXED
+
+  # Textarea
+  ° selection scroll doesn't work (selection API doesn't support <textarea>) => FIXED -- used mousedown/mousemove detection (possible as nothing can be embedded inside a textarea)
+  ° selection lost when scrollbar clicked => FIXED
+
+  # Contenteditable
+  ° keyboard keys mess (e.g. Ctrl+Home) => FIXED
+  ~ caret scroll do not return to begin/end of the line => FIXED (partially) -- not last line
+  ? first/last line/column invisible when not outside => UNKNOW -- not obviously a bug as outside option can serves this purpose
+
+  # Resize
+  ° lag (especially horizontal) => FIXED
+  ° minimal height/width (lose positioning) => FIXED
+  ° scrollbars overlay resize button (e.g. left-side) => FIXED
+  ° dblclick => double-click resize not implemented => FIXED
+  ? Resized scrollbars sometimes misaligned when resized quickly => UNKNOW -- seem to have disappeared since float values added
+
+  # Drag
+  ! Firefox dragend event not triggered (select whole line <pre> on contenteditable then drag out on other contenteditable)
+
+================================================================================
+--------------------------------------------------------------------------------
+# Questions
+--------------------------------------------------------------------------------
+================================================================================
+
+  * remove any one scrollbar (either vertical and horizontal) and keep script working => doesn't really make sense as a scrollbar can simply be hidden withtout broking the script process ; remove method should be a 'clear' procedure and not a 'filter' procedure
+  * prevent scroll ability when any one scrollbar (either vertical and horizontal) is hidden => assumption is if the scrolling isn't intented to work, then it will not be implemented at all ; otherwise, the script has to work as expected in any case
+
+================================================================================
+--------------------------------------------------------------------------------
+# Ideas
+--------------------------------------------------------------------------------
+================================================================================
+
+  ? Incremental auto-fire delays ; 1 -> 300, 2 -> 150, 3 -> 75, etc. until min
+  ? Add classes top/bottom/left/right/outside/inside instead of complicated CSS rules
+  ° Presets (i.e. 'themes')
+    If a theme is defined, then its properties override any other property, except the 'class' property which is combined
+  ° Smooth scrolling (browser feature) => issue is that we have to reset thumb position and we can't know exactly when a smooth scrolling stopped ; this conduces to set either a timer function, either a scroll event, which could result in an overall lag
+  * Lock scroll keyboard key => this feature seems not to be implemented in common browsers (like in many softwares nowadays) ; plus, how can we know that the keyboard lock is on? (same reflexion applied to caps lock and num lock)
+  * Hover-focus option (i.e. scrollbar hidden when container not hovered and not focused) => BAD IDEA (mostly) -- then how can the user see that a content box is scrollable?
+  * Lock page scroll when selection scroll is triggered => hard coded feature -- no way found to lock the document scrolling when selection gets out of window.
+  * Display a contextual menu when second mouse button is clicked over a scrollbar => seen as obstructive
+    This can be done using customized CSS contextual menu, but it seems a very heavy and inelegant solution
+    for a feature relying on browser capabilities (as middle mouse button scrolling also is).
+
+================================================================================
+--------------------------------------------------------------------------------
+# Rename
+--------------------------------------------------------------------------------
+================================================================================
+
+  ? Thumb Margin => Thumb Padding / Thumb Spacing / Thumb Gutter
+  ? Left Side => Left
+  ? Top => Top
+  ? Outside Box => Outside
+  ? Expand Box => Expand
+  ? Wrapper => Outer Wrapper
+  * Window Bar => Window
+  ? show_buttons: false => no_buttons
+  ? show_track: false => no_track
+  ? data-noscroll => data-scroll-by-key="false"
+  ? resetThumb() => update()
+
+================================================================================
+--------------------------------------------------------------------------------
+# Themes
+--------------------------------------------------------------------------------
+================================================================================
+
+  0 - Test : Flat blocks and jerky colors
+  1 - Flat : Flat blocks and light colors
+  2 - Slim : Touch device translucid grey line
+  3 - Aero : Window 7 with shadow and tribar
+
+================================================================================
+--------------------------------------------------------------------------------
+# Examples
+--------------------------------------------------------------------------------
+================================================================================
+
+  1 - start    => box-sizing, position                 rocket (animated)
+  2 - position => expand, outside, left, top           box_sel
+  3 - editable => contentediable, textarea             box_pen
+  4 - themes   => flat, slim, aero, test               palette
+  5 - options  => thumb length, row size and delays    gear (animated)
+  6 - snippets => tricky or misunderstanding things    lower_greater_slash
+
+================================================================================
+--------------------------------------------------------------------------------
+# Routine
+--------------------------------------------------------------------------------
+================================================================================
+
+  > On creation, both scrollbars (vertical and horizontal) are inserted in document.
+  > At remove, both scrollbars (vertical and horizontal) are removed from document.
+  > In any case, when an element is targetted by the script, both directions (vertical and horizontal), are scrollable by keyboard, mouse wheel and mouse selection.
+  > If any one scrollbar is visible, then the user can also interact with it to control the scrolling.
+
+================================================================================
+--------------------------------------------------------------------------------
+# Window Bar
+--------------------------------------------------------------------------------
+================================================================================
+
+  # HOW
+    * prevent body overflowing => NO -- left to designer ; if the layout is good,
+        then the window scrollbars should even not be visible at all
+    ° allow only one 'window_bar' container per frame
+    ° refresh scrollbars when window is resized
+    ° replace window build-in methods
+      ° scroll
+      ° scrollBy
+      ° scrollTo
+      * scrollByLines -- NON STANDARD
+      * scrollByPages -- NON STANDARD
+    ° override window scrollbars event (keypress + mousewheel)
+
+  # NOTE (1)
+    With '100%' height/width values,
+      if the container height/width overcome the window height/width during a resize,
+      then the scrollbar refresh will result in a mismatch when the window is reduced.
+    This is due to browser computing method and no way had been found to compute the exact values.
+    Precisely, the browser uses an estimated value on the expected result to come.
+      e.g. when reducing, real height is 500px but browser returns 485px (kind of safety value)
+    To workaround this, it is possible to set height to '100vh' and width to '100vw' instead of '100%'
+      (see. Mathieu's port-folio layout)
+    Anyway, a timer has been added to ensure the scrollbars keep the proper size.
+
+  # NOTE (2)
+    HTML Elements offsetLeft, offsetRight, offsetWidth, offsetHeight properties
+      returns integers (i.e. rounded values)
+    This used to result in a wrong positioning for offsetLeft + offsetWidth
+      with floating point values like left = 20.5 and width = 100.5
+      result is 122 instead of 121 (offsetLeft = 21 and offsetWidth = 101).
+    This issue should have been fixed.
+    Anyway, CSS body { overflow: hidden; } can be used to prevent that issue.
+
+  # NOTE (3)
+    Window Bar != Window Resize
+    A document may have multiple scrollbars that should be refreshed along with window
+      e.g. two panels layout
+
+================================================================================
+--------------------------------------------------------------------------------
+# Vertical Flag (JS script)
+--------------------------------------------------------------------------------
+================================================================================
+
+  null  => both
+  true  => vertical
+  false => horizontal
+
+================================================================================
+--------------------------------------------------------------------------------
+# Extra Markups (HTML code)
+--------------------------------------------------------------------------------
+================================================================================
+
+  1 - noscroll
+      indicates that an element won't be affected with scroll by key
+      (i.e. anything that will require keys event for itself ; e.g. custom accordion)
+        <div data-noscroll>
+    ? data-scroll-by-key="false" alias data-noscroll
+    ? data-scroll-by-key="true" alias data-forcescroll
+
+================================================================================
+--------------------------------------------------------------------------------
+# Options Priority
+--------------------------------------------------------------------------------
+================================================================================
+
+  > - Lower level override higher level
+
+  1 - Default options => by script (i.e. once and for all until document reloaded)
+  2 - Run options     => by script (i.e. affect any number of scrollbars)
+  3 - Inline options  => by tag (i.e. affect only the scrollbar targetted by HTML code)
+  4 - Theme options   => by script or tag (i.e. affect any scrollbar having a 'theme' option)
+
+  > - Run options override Default options
+  > - Inline options override Run options
+  > - Theme options override Inline options (except for 'class' property, which is merged)
+
+================================================================================
+--------------------------------------------------------------------------------
+# Options Syntax
+--------------------------------------------------------------------------------
+================================================================================
+
+  DOC             Class => custom ; Tumb Min Height => 6
+  RUN             { class : "custom", thumb_min_height : 6 }
+  INLINE (1)      "class: custom; thumb-min-height: 6"
+  INLINE (2)      "class: custom; thumb_min_height: 6"
+  DATA-ATTR       data-thumb-class="custom" data-thumb-min-height="6"
+
+================================================================================
+--------------------------------------------------------------------------------
+# Options List
+--------------------------------------------------------------------------------
+================================================================================
+
+  # Option                  Flag    Type        Values ; Description
+
+  ° Theme                   N       string      \w+ ; preset of options defined either as run or inline option (e.g. theme: "custom";)
+
+  ° Class                   T       string      \w+ ; CSS class for both scrollbars (if multiple then use "class1 class2 class3" syntax - no colon, no comma) -- Default : "flat"
+  ° Class Vertical          T       string      \w+ ; CSS class for vertical scrollbar (if multiple then use "class1 class2 class3" syntax - no colon, no comma) -- Default : null
+  ° Class Horizontal        T       string      \w+ ; CSS class for horizontal scrollbar (if multiple then use "class1 class2 class3" syntax - no colon, no comma) -- Default : null
+  ° Class Wrapper           T       string      \w+ ; CSS class for outer wrapper (if multiple then use "class1 class2 class3" syntax - no colon, no comma) -- Default : null
+
+  ° Wrapper                 C       boolean     0|1 ; create outer wrapper for container -- Default : false
+  ° Window Bar              N/C     boolean     0|1 ; container scrollbars behave like window scollbars
+  ° Smooth Scrolling        E/C     boolean     0|1 ; activate browser smooth scrolling -- Default : false
+
+  ° Top Side                S       boolean     0|1 ; display horizontal scrollbar at top of container -- Default : false
+  ° Left Side               S       boolean     0|1 ; display vertical scrollbar at left of container -- Default : false
+  ° Expand Box              S       boolean     0|1 ; container expanded while content preserved -- Default : false
+  ° Outside Box             S       boolean     0|1 ; scrollbar displayed outside of container -- Default : false
+
+  ° Show Grip               S       boolean     0|1 ; thumb grip is shown -- Default : true
+  ° Show Track              S       boolean     0|1 ; scrollbar track is shown -- Default : true
+  ° Show Buttons            S       boolean     0|1 ; scrollbar buttons are shown -- Default : true
+  ° Show Vertical           S       boolean     0|1 ; vertical scrollbar is shown -- Default : true
+  ° Show Horizontal         S       boolean     0|1 ; horizontal scrollbar is shown -- Default : true
+  ° Hide Unscrollable       S       boolean     0|1 ; scrollbars are hidden if container isn't scrollable -- Default : true
+
+  ° Thumb Margin            S       integer     \d+ ; number of pixels left blank between thumb and track -- Default : 0
+  ° Thumb Min Length        S       integer     \d+ ; minimal length of thumb in pixels -- Default : 6
+  ° Thumb Grip Length       S       integer     \d+ ; thumb length in pixels required for grip to be shown -- Default : 20
+
+  ° Row Height              S       integer     \d+ ; number of pixels scrolled vertically per row scroll (mouse wheel, buttons click and key up/down press) -- Default : 18
+  ° Row Width               S       integer     \d+ ; number of pixels scrolled horizontally per row scroll (mouse wheel, buttons click and key up/down press) -- Default : 27
+  ° Row Wheel               S       integer     \d+ ; number of rows scrolled per wheel impulse -- Default : 5
+
+  ° Delay Row               G       integer     \d+ ; time interval between two scroll row auto-fires (milliseconds) -- Default : 20
+  ° Delay Page              G       integer     \d+ ; time interval between two scroll page auto-fires (milliseconds) -- Default : 60
+  ° Delay Track             G       integer     \d+ ; time elapsed before triggering auto-fire when pressing track (milliseconds) -- Default : 150
+  ° Delay Button            G       integer     \d+ ; time elapsed before triggering auto-fire when pressing buttons (milliseconds) -- Default : 300
+  ° Delay Select            G       integer     \d+ ; time interval between two auto-scrolling by selection triggers (milliseconds) -- Default : 10
+  ° Delay Resize            G       integer     \d+ ; time elapsed between two container resize triggers (milliseconds) -- Default : 25
+
+  ° Select Max              G       integer     \d+ ; maximum number of pixels scrolled per auto-scrolling by selection trigger -- Default : 20
+  ° Select Bound            G       integer     \d+ ; distance in pixels from container edges below which the auto-scrolling by selection will start -- Default : 20
+  ° Select Range            G       integer     \d+ ; range of pixels at which the number of pixels auto-scrolled by selection is increased -- Default : 10
+
+  ° Snap At Bounds          G       boolean     0|1 ; scrollbar sticks to edges when track is clicked -- Default : true
+  ° Snap Threshold          G       integer     \d+ ; number of pixels below which the scrollbar will become sticky -- Default : 10
+
+  ° Reset At Limits         G       boolean     0|1 ; reset scroll position when cursor moved far away -- Default : true
+  ° Reset Threshold         G       integer     \d+ ; number of pixels above which the scroll position is reset (either positive or negative) -- Default : 200
+
+  ° Reverse Wheel Y         G       boolean     0|1 ; wheel up vertical scrollbar to the bottom, wheel down to the top -- Default : false
+  ° Reverse Wheel X         G       boolean     0|1 ; wheel up horizontal scrollbar to the right, wheel down to the left -- Default : false
+
+  > N = No global (i.e. only run and inline) ; T = Tag (not registered) ; C = Container (data-attribute) ; S = Scrollbar (data-attribute) ; E = Experimental ; G = Global (i.e. no run, no inline)
+
